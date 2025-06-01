@@ -41,11 +41,11 @@ public class Borrador {
 
   private void validateNotNull(Object o){
     if(o == null){
-      throw new NullPointerException("El campo no puede ser nulo");
+      throw new PrendaInvalidaException("El campo no puede ser nulo");
     }
   }
 
-  private void validarMaterialConsistenteConTipo(Material l){
+  private void validarMaterialConsistenteConTipo(Material material){
     material.consistenteCon(tipo);
   }
 }

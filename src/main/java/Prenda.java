@@ -19,5 +19,9 @@ public class Prenda {
     return tipo.getCategoria();
   }
 
+  public Trama getTrama(){
+    return trama;
+  }
+
 }
 
