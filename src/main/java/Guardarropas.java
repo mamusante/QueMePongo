@@ -1,5 +1,4 @@
 import java.util.ArrayList;
-import java.util.List;
 
 public class Guardarropas {
 
@@ -21,8 +20,8 @@ public class Guardarropas {
     );
   }
 
-  public List<Atuendo> generarTodasLasSugerencias() {
-    List<Atuendo> sugerencias = new ArrayList<>();
+  public ArrayList<Atuendo> generarTodasLasSugerencias() {
+    ArrayList<Atuendo> sugerencias = new ArrayList<>();
 
     for (Prenda prendaSuperior : prendasSuperiores) {
       for (Prenda prendaInferior : prendasInferiores) {

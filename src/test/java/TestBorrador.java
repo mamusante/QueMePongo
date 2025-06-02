@@ -24,4 +24,15 @@ public class TestBorrador {
     assertEquals(Trama.LISA , prendaCreada.getTrama());
 
   }
+
+  @Test
+  @DisplayName("Armo una remera de cuero y me dice que material no se condice con tipo")
+  public void PrendaConMaterialNoCondiceConTipo()
+  {
+    Borrador borrador = new Borrador(TipoPrenda.REMERA);
+
+    assertThrows(MaterialInconsistenteConTipoException.class, () -> borrador.elegirMaterial(Material.CUERO));
+
+  }
+
 }
