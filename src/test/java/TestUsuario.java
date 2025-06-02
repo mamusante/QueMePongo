@@ -17,22 +17,27 @@ public class TestUsuario {
     Borrador borrador1 = new Borrador(TipoPrenda.REMERA);
     borrador1.elegirMaterial(Material.LINO);
     borrador1.elegirColorPrimario(new Color("Rojo"));
+    borrador1.elegirEstilo(Estilo.FORMAL);
     Prenda remeraLinoLisa = borrador1.crearPrenda();
+
 
     Borrador borrador2 = new Borrador(TipoPrenda.REMERA);
     borrador2.elegirMaterial(Material.ALGODON);
     borrador2.elegirColorPrimario(new Color("Negro"));
     borrador2.elegirTrama(Trama.A_CUADROS);
+    borrador2.elegirEstilo(Estilo.INFORMAL);
     Prenda remeraAlgodonACuadros = borrador2.crearPrenda();
 
     Borrador borrador3 = new Borrador(TipoPrenda.PANTALON);
     borrador3.elegirMaterial(Material.ALGODON);
     borrador3.elegirColorPrimario(new Color("Verde"));
     borrador3.elegirTrama(Trama.A_CUADROS);
+    borrador3.elegirEstilo(Estilo.FORMAL);
     Prenda pantalonVerdeACuadros = borrador3.crearPrenda();
 
     Borrador borrador4 = new Borrador(TipoPrenda.ZAPATOS);
     borrador4.elegirMaterial(Material.CUERO);
+    borrador4.elegirEstilo(Estilo.FORMAL);
     borrador4.elegirColorPrimario(new Color("Marron"));
     Prenda zapatosAzulesDeCuero = borrador4.crearPrenda();
 
@@ -67,6 +72,15 @@ public class TestUsuario {
     ArrayList<Atuendo> combinaciones = guardarropasdeMaria.generarTodasLasSugerencias();
 
     assertEquals(prendasSuperiores.size() * prendasInferiores.size() * calzados.size(), combinaciones.size());
+  }
+
+  @Test
+  @DisplayName("Genero todos los atuendos y me devuelve todas las combinaciones posibles para un +55 con motorAntiViejos")
+  public void todasLascombinacionesPosiblesParaUnSenior(){
+    Usuario guardarropasdeunSenior = new Usuario(prendasSuperiores, prendasInferiores, calzados, new MotorAntiViejos(), 60);
+    ArrayList<Atuendo> combinaciones = guardarropasdeunSenior.generarTodasLasSugerencias();
+
+    assertEquals(1, combinaciones.size());
   }
 
 }

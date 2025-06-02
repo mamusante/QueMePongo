@@ -17,6 +17,10 @@ public class Prenda {
 
   }
 
+  public Boolean isInformal() {
+    return estilo == Estilo.INFORMAL;
+  }
+
   public Categoria getCategoria(){
     return tipo.getCategoria();
   }

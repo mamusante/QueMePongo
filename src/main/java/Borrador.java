@@ -41,6 +41,7 @@ public class Borrador {
     this.validateNotNull(tipo);
     this.validateNotNull(material);
     this.validateNotNull(colorPrimario);
+    this.validateNotNull(estilo);
     return new Prenda(tipo,material,trama,colorPrimario,colorSecundario,estilo);
   }
 

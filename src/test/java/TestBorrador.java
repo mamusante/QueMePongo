@@ -19,6 +19,7 @@ public class TestBorrador {
     Borrador borrador = new Borrador(TipoPrenda.REMERA);
     borrador.elegirMaterial(Material.LINO);
     borrador.elegirColorPrimario(new Color("Rojo"));
+    borrador.elegirEstilo(Estilo.FORMAL);
     Prenda prendaCreada = borrador.crearPrenda();
 
     assertEquals(Trama.LISA , prendaCreada.getTrama());
