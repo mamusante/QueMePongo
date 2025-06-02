@@ -5,19 +5,19 @@ public class Guardarropas {
   ArrayList<Prenda> prendasSuperiores;
   ArrayList<Prenda> prendasInferiores;
   ArrayList<Prenda> calzado;
+  MotorDeSugerencias motor;
+  Integer edad;
 
-  public Guardarropas(ArrayList<Prenda> prendasSuperiores, ArrayList<Prenda> prendasInferiores, ArrayList<Prenda> calzado) {
+  public Guardarropas(ArrayList<Prenda> prendasSuperiores, ArrayList<Prenda> prendasInferiores, ArrayList<Prenda> calzado, MotorDeSugerencias motor, Integer edad) {
     this.prendasSuperiores = prendasSuperiores;
     this.prendasInferiores = prendasInferiores;
     this.calzado = calzado;
+    this.motor = motor;
+    this.edad = edad;
   }
 
   public Atuendo generarSugerencia() {
-    return new Atuendo(
-        Randoms.atRandom(prendasSuperiores),
-        Randoms.atRandom(prendasInferiores),
-        Randoms.atRandom(calzado)
-    );
+    return motor.generarSugerencia(this);
   }
 
   public ArrayList<Atuendo> generarTodasLasSugerencias() {
@@ -32,6 +32,16 @@ public class Guardarropas {
     }
 
     return sugerencias;
+  }
+
+  public ArrayList<Prenda> getPrendasSuperiores() {
+    return prendasSuperiores;
+  }
+  public ArrayList<Prenda> getPrendasInferiores() {
+    return prendasInferiores;
+  }
+  public ArrayList<Prenda> getCalzado() {
+    return calzado;
   }
 }
 

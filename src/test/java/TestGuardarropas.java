@@ -50,7 +50,7 @@ public class TestGuardarropas {
   @DisplayName("Genero un atuendo y me devuelve uno completo")
   public void meDevuelveUnAtuendoCompleto(){
 
-    Guardarropas guardarropasdeMaria = new Guardarropas(prendasSuperiores, prendasInferiores, calzados);
+    Guardarropas guardarropasdeMaria = new Guardarropas(prendasSuperiores, prendasInferiores, calzados, new MotorDefault(), 22);
 
     assertDoesNotThrow(() -> {
       Atuendo miNuevoAtuendo = guardarropasdeMaria.generarSugerencia();
@@ -62,9 +62,9 @@ public class TestGuardarropas {
   @DisplayName("Genero todos los atuendos y me devuelve todas las combinaciones posibles")
   public void todasLascombinacionesPosibles(){
 
-    Guardarropas guardarropas = new Guardarropas(prendasSuperiores, prendasInferiores, calzados);
+    Guardarropas guardarropasdeMaria = new Guardarropas(prendasSuperiores, prendasInferiores, calzados, new MotorDefault(), 22);
 
-    ArrayList<Atuendo> combinaciones = guardarropas.generarTodasLasSugerencias();
+    ArrayList<Atuendo> combinaciones = guardarropasdeMaria.generarTodasLasSugerencias();
 
     assertEquals(prendasSuperiores.size() * prendasInferiores.size() * calzados.size(), combinaciones.size());
   }
