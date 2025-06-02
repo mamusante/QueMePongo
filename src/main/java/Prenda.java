@@ -4,14 +4,16 @@ public class Prenda {
   private Color colorPrimario;
   private Color colorSecundario;
   private Trama trama;
+  private Estilo estilo;
 
-  public Prenda(TipoPrenda tipo, Material material, Trama trama, Color colorPrimario, Color colorSecundario) {
+  public Prenda(TipoPrenda tipo, Material material, Trama trama, Color colorPrimario, Color colorSecundario, Estilo estilo) {
 
     this.tipo = tipo;
     this.material = material;
     this.trama = trama;
     this.colorPrimario = colorPrimario;
     this.colorSecundario = colorSecundario;
+    this.estilo = estilo;
 
   }
 
@@ -23,5 +25,8 @@ public class Prenda {
     return trama;
   }
 
+  public Estilo getEstilo(){
+    return estilo;
+  }
 }
 

@@ -41,7 +41,7 @@ public class Borrador {
     this.validateNotNull(tipo);
     this.validateNotNull(material);
     this.validateNotNull(colorPrimario);
-    return new Prenda(tipo,material,trama,colorPrimario,colorSecundario);
+    return new Prenda(tipo,material,trama,colorPrimario,colorSecundario,estilo);
   }
 
   private void validateNotNull(Object o){
