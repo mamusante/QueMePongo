@@ -4,6 +4,7 @@ public class Borrador {
   private Color colorPrimario;
   private Color colorSecundario = null;
   private Trama trama = Trama.LISA;
+  private Estilo estilo;
 
   Borrador(TipoPrenda tipo){
     this.validateNotNull(tipo);
@@ -20,6 +21,10 @@ public class Borrador {
     if(trama == null){
       this.trama = Trama.LISA;
     }else this.trama = trama;
+  }
+
+  public void elegirEstilo(Estilo estilo){
+    this.estilo = estilo;
   }
 
   public void elegirColorPrimario(Color colorPrimario){

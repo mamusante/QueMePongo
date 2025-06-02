@@ -68,7 +68,5 @@ public class TestGuardarropas {
 
     assertEquals(prendasSuperiores.size() * prendasInferiores.size() * calzados.size(), combinaciones.size());
   }
-//
-//
-//   // 4 combinaciones
+
 }
