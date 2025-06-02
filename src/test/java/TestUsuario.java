@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class TestGuardarropas {
+public class TestUsuario {
 
   static ArrayList<Prenda> prendasSuperiores = new ArrayList<>();;
   static ArrayList<Prenda> prendasInferiores = new ArrayList<>();;
@@ -50,7 +50,7 @@ public class TestGuardarropas {
   @DisplayName("Genero un atuendo y me devuelve uno completo")
   public void meDevuelveUnAtuendoCompleto(){
 
-    Guardarropas guardarropasdeMaria = new Guardarropas(prendasSuperiores, prendasInferiores, calzados, new MotorDefault(), 22);
+    Usuario guardarropasdeMaria = new Usuario(prendasSuperiores, prendasInferiores, calzados, new MotorDefault(), 22);
 
     assertDoesNotThrow(() -> {
       Atuendo miNuevoAtuendo = guardarropasdeMaria.generarSugerencia();
@@ -62,7 +62,7 @@ public class TestGuardarropas {
   @DisplayName("Genero todos los atuendos y me devuelve todas las combinaciones posibles")
   public void todasLascombinacionesPosibles(){
 
-    Guardarropas guardarropasdeMaria = new Guardarropas(prendasSuperiores, prendasInferiores, calzados, new MotorDefault(), 22);
+    Usuario guardarropasdeMaria = new Usuario(prendasSuperiores, prendasInferiores, calzados, new MotorDefault(), 22);
 
     ArrayList<Atuendo> combinaciones = guardarropasdeMaria.generarTodasLasSugerencias();
 

@@ -1,7 +1,8 @@
 import java.util.ArrayList;
 
 public interface MotorDeSugerencias {
-  public Atuendo generarSugerencia(Guardarropas guardarropas);
 
-  public ArrayList<Atuendo> generarTodasLasSugerencias(Guardarropas guardarropas);
+ public ArrayList<Prenda> getPrendasSuperiores(Usuario usuario);
+ public ArrayList<Prenda> getPrendasInferiores(Usuario usuario);
+ public ArrayList<Prenda> getCalzado(Usuario usuario);
 }

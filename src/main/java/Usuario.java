@@ -1,6 +1,6 @@
 import java.util.ArrayList;
 
-public class Guardarropas {
+public class Usuario {
 
   ArrayList<Prenda> prendasSuperiores;
   ArrayList<Prenda> prendasInferiores;
@@ -8,7 +8,7 @@ public class Guardarropas {
   MotorDeSugerencias motor;
   Integer edad;
 
-  public Guardarropas(ArrayList<Prenda> prendasSuperiores, ArrayList<Prenda> prendasInferiores, ArrayList<Prenda> calzado, MotorDeSugerencias motor, Integer edad) {
+  public Usuario(ArrayList<Prenda> prendasSuperiores, ArrayList<Prenda> prendasInferiores, ArrayList<Prenda> calzado, MotorDeSugerencias motor, Integer edad) {
     this.prendasSuperiores = prendasSuperiores;
     this.prendasInferiores = prendasInferiores;
     this.calzado = calzado;
@@ -17,15 +17,19 @@ public class Guardarropas {
   }
 
   public Atuendo generarSugerencia() {
-    return motor.generarSugerencia(this);
+    return new Atuendo(
+        Randoms.atRandom(motor.getPrendasSuperiores(this)),
+        Randoms.atRandom(motor.getPrendasInferiores(this)),
+        Randoms.atRandom(motor.getCalzado(this))
+    );
   }
 
   public ArrayList<Atuendo> generarTodasLasSugerencias() {
     ArrayList<Atuendo> sugerencias = new ArrayList<>();
 
-    for (Prenda prendaSuperior : prendasSuperiores) {
-      for (Prenda prendaInferior : prendasInferiores) {
-        for (Prenda zapato : calzado) {
+    for (Prenda prendaSuperior : motor.getPrendasSuperiores(this)) {
+      for (Prenda prendaInferior : motor.getPrendasInferiores(this)) {
+        for (Prenda zapato : motor.getCalzado(this)) {
           sugerencias.add(new Atuendo(prendaSuperior, prendaInferior, zapato));
         }
       }
@@ -42,6 +46,10 @@ public class Guardarropas {
   }
   public ArrayList<Prenda> getCalzado() {
     return calzado;
+  }
+
+  public void setMotor(MotorDeSugerencias motor) {
+    this.motor = motor;
   }
 }
 

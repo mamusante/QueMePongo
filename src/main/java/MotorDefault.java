@@ -2,25 +2,16 @@ import java.util.ArrayList;
 
 public class MotorDefault implements MotorDeSugerencias{
 
-  public Atuendo generarSugerencia(Guardarropas guardarropas) {
-    return new Atuendo(
-        Randoms.atRandom(guardarropas.getPrendasSuperiores()),
-        Randoms.atRandom(guardarropas.getPrendasInferiores()),
-        Randoms.atRandom(guardarropas.getCalzado())
-    );
+
+  public ArrayList<Prenda> getPrendasSuperiores(Usuario usuario) {
+    return usuario.getPrendasSuperiores();
   }
 
-  public ArrayList<Atuendo> generarTodasLasSugerencias(Guardarropas guardarropas) {
-    ArrayList<Atuendo> sugerencias = new ArrayList<>();
+  public ArrayList<Prenda> getPrendasInferiores(Usuario usuario) {
+    return usuario.getPrendasInferiores();
+  }
 
-    for (Prenda prendaSuperior : guardarropas.getPrendasSuperiores()) {
-      for (Prenda prendaInferior : guardarropas.getPrendasInferiores()) {
-        for (Prenda zapato : guardarropas.getCalzado()) {
-          sugerencias.add(new Atuendo(prendaSuperior, prendaInferior, zapato));
-        }
-      }
-    }
-
-    return sugerencias;
+  public ArrayList<Prenda> getCalzado(Usuario usuario) {
+    return usuario.getCalzado();
   }
 }
