@@ -1,4 +1,5 @@
 import ConsultadorClima.AccuWeather;
+import ConsultadorClima.MockConsultadorClima;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -7,7 +8,7 @@ import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class TestUsuario {
+public class TestGuardarropas {
 
   static ArrayList<Prenda> prendas = new ArrayList<>();
 
@@ -50,10 +51,21 @@ public class TestUsuario {
   }
 
   @Test
+  @DisplayName("La cantidad de prendas de cada tipo es la correcta")
+  public void CantidadDePrendasPorCategoria() {
+
+    Guardarropas guardarropasdeMaria = new Guardarropas(prendas, new MotorDefault(), 22, new MockConsultadorClima());
+    assertEquals(2 , guardarropasdeMaria.getPrendasSuperiores().size());
+    assertEquals(1 , guardarropasdeMaria.getPrendasInferiores().size());
+    assertEquals(1 , guardarropasdeMaria.getCalzado().size());
+
+  }
+
+  @Test
   @DisplayName("Genero un atuendo y me devuelve uno completo")
   public void meDevuelveUnAtuendoCompleto(){
 
-    Guardarropas guardarropasdeMaria = new Guardarropas(prendas, new MotorDefault(), 22, new AccuWeather());
+    Guardarropas guardarropasdeMaria = new Guardarropas(prendas, new MotorDefault(), 22, new MockConsultadorClima());
 
     assertDoesNotThrow(() -> {
       Atuendo miNuevoAtuendo = guardarropasdeMaria.generarSugerencia();
@@ -65,7 +77,7 @@ public class TestUsuario {
   @DisplayName("Genero todos los atuendos y me devuelve todas las combinaciones posibles")
   public void todasLascombinacionesPosibles(){
 
-    Guardarropas guardarropasdeMaria = new Guardarropas(prendas, new MotorDefault(), 22, new AccuWeather());
+    Guardarropas guardarropasdeMaria = new Guardarropas(prendas, new MotorDefault(), 22, new MockConsultadorClima());
 
     ArrayList<Atuendo> combinaciones = guardarropasdeMaria.generarTodasLasSugerencias();
 
@@ -83,5 +95,9 @@ public class TestUsuario {
 
     assertEquals(1, combinaciones.size());
   }
+
+
+
+
 
 }

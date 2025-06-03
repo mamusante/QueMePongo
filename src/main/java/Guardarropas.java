@@ -1,4 +1,5 @@
 import ConsultadorClima.ConsultadorClima;
+import Exceptions.NoHayPrendasSuficientesParaAtuendoException;
 
 import java.util.ArrayList;
 import java.util.stream.Collectors;
@@ -22,11 +23,22 @@ public class Guardarropas {
     ArrayList<Prenda> prendasAcordes = motor.getPrendasAptas(this);
     prendasAcordes = filtrarPrendasPorTemperatura(prendasAcordes);
 
+    validarPrendasSuficientesParaGenerarAtuendo(prendasAcordes);
+
     return new Atuendo(
         Randoms.atRandom(filtrarPrendasPorCategoria(prendasAcordes, Categoria.PARTE_SUPERIOR)),
         Randoms.atRandom(filtrarPrendasPorCategoria(prendasAcordes, Categoria.PARTE_INFERIOR)),
         Randoms.atRandom(filtrarPrendasPorCategoria(prendasAcordes, Categoria.CALZADO))
     );
+  }
+
+  private void validarPrendasSuficientesParaGenerarAtuendo(ArrayList<Prenda> prendasAcordes) {
+    if(
+        filtrarPrendasPorCategoria(prendasAcordes, Categoria.PARTE_SUPERIOR).isEmpty() ||
+            filtrarPrendasPorCategoria(prendasAcordes, Categoria.PARTE_INFERIOR).isEmpty()  ||
+            filtrarPrendasPorCategoria(prendasAcordes, Categoria.CALZADO).isEmpty() ){
+      throw new NoHayPrendasSuficientesParaAtuendoException("No se puede generar un atuendo porq no hay suficientes prendas");
+    }
   }
 
   public ArrayList<Atuendo> generarTodasLasSugerencias() {
@@ -46,8 +58,9 @@ public class Guardarropas {
   }
 
   private ArrayList<Prenda> filtrarPrendasPorTemperatura(ArrayList<Prenda> prendas) {
-    double temperaturaActual = consultador.getTemperaturaActual();
-    return prendas;
+    return prendas.stream()
+        .filter(p -> p.getMaxTemp() >= consultador.getTemperaturaActual())
+        .collect(Collectors.toCollection(ArrayList::new));
   }
 
   public ArrayList<Prenda> getPrendasSuperiores() {

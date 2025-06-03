@@ -36,5 +36,9 @@ public class Prenda {
   public TipoPrenda getTipo() {
     return tipo;
   }
+
+  public double getMaxTemp(){
+    return tipo.getMaxTemp();
+  }
 }
 
