@@ -14,14 +14,14 @@ public class TestUsuario {
 
   @BeforeAll
   public static void iniciarTests(){
-    Borrador borrador1 = new Borrador(TipoPrenda.REMERA);
+    Borrador borrador1 = new Borrador(TipoPrenda.REMERA_MANGA_CORTA);
     borrador1.elegirMaterial(Material.LINO);
     borrador1.elegirColorPrimario(new Color("Rojo"));
     borrador1.elegirEstilo(Estilo.FORMAL);
     Prenda remeraLinoLisa = borrador1.crearPrenda();
 
 
-    Borrador borrador2 = new Borrador(TipoPrenda.REMERA);
+    Borrador borrador2 = new Borrador(TipoPrenda.REMERA_MANGA_CORTA);
     borrador2.elegirMaterial(Material.ALGODON);
     borrador2.elegirColorPrimario(new Color("Negro"));
     borrador2.elegirTrama(Trama.A_CUADROS);
