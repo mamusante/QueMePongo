@@ -1,3 +1,4 @@
+import ConsultadorClima.AccuWeather;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -8,9 +9,8 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class TestUsuario {
 
-  static ArrayList<Prenda> prendasSuperiores = new ArrayList<>();;
-  static ArrayList<Prenda> prendasInferiores = new ArrayList<>();;
-  static ArrayList<Prenda> calzados= new ArrayList<>();
+  static ArrayList<Prenda> prendas = new ArrayList<>();
+
 
   @BeforeAll
   public static void iniciarTests(){
@@ -41,12 +41,10 @@ public class TestUsuario {
     borrador4.elegirColorPrimario(new Color("Marron"));
     Prenda zapatosAzulesDeCuero = borrador4.crearPrenda();
 
-    prendasSuperiores.add(remeraLinoLisa);
-    prendasSuperiores.add(remeraAlgodonACuadros);
-
-    prendasInferiores.add(pantalonVerdeACuadros);
-
-    calzados.add(zapatosAzulesDeCuero);
+    prendas.add(remeraLinoLisa);
+    prendas.add(remeraAlgodonACuadros);
+    prendas.add(pantalonVerdeACuadros);
+    prendas.add(zapatosAzulesDeCuero);
 
 
   }
@@ -55,7 +53,7 @@ public class TestUsuario {
   @DisplayName("Genero un atuendo y me devuelve uno completo")
   public void meDevuelveUnAtuendoCompleto(){
 
-    Usuario guardarropasdeMaria = new Usuario(prendasSuperiores, prendasInferiores, calzados, new MotorDefault(), 22);
+    Guardarropas guardarropasdeMaria = new Guardarropas(prendas, new MotorDefault(), 22, new AccuWeather());
 
     assertDoesNotThrow(() -> {
       Atuendo miNuevoAtuendo = guardarropasdeMaria.generarSugerencia();
@@ -67,17 +65,20 @@ public class TestUsuario {
   @DisplayName("Genero todos los atuendos y me devuelve todas las combinaciones posibles")
   public void todasLascombinacionesPosibles(){
 
-    Usuario guardarropasdeMaria = new Usuario(prendasSuperiores, prendasInferiores, calzados, new MotorDefault(), 22);
+    Guardarropas guardarropasdeMaria = new Guardarropas(prendas, new MotorDefault(), 22, new AccuWeather());
 
     ArrayList<Atuendo> combinaciones = guardarropasdeMaria.generarTodasLasSugerencias();
 
-    assertEquals(prendasSuperiores.size() * prendasInferiores.size() * calzados.size(), combinaciones.size());
+    assertEquals(
+        guardarropasdeMaria.getPrendasSuperiores().size() * guardarropasdeMaria.getPrendasInferiores().size() * guardarropasdeMaria.getCalzado().size(),
+        combinaciones.size()
+    );
   }
 
   @Test
   @DisplayName("Genero todos los atuendos y me devuelve todas las combinaciones posibles para un +55 con motorAntiViejos")
   public void todasLascombinacionesPosiblesParaUnSenior(){
-    Usuario guardarropasdeunSenior = new Usuario(prendasSuperiores, prendasInferiores, calzados, new MotorAntiViejos(), 60);
+    Guardarropas guardarropasdeunSenior = new Guardarropas(prendas, new MotorAntiViejos(), 60, new AccuWeather());
     ArrayList<Atuendo> combinaciones = guardarropasdeunSenior.generarTodasLasSugerencias();
 
     assertEquals(1, combinaciones.size());

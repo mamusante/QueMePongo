@@ -32,5 +32,9 @@ public class Prenda {
   public Estilo getEstilo(){
     return estilo;
   }
+
+  public TipoPrenda getTipo() {
+    return tipo;
+  }
 }
 
