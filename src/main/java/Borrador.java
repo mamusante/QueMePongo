@@ -1,3 +1,5 @@
+import Exceptions.PrendaInvalidaException;
+
 public class Borrador {
   private TipoPrenda tipo; //zapato, camisa manga corta, pantalon
   private Material material;

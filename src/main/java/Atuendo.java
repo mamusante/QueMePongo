@@ -1,3 +1,5 @@
+import Exceptions.AtuendoInvalidoException;
+
 public class Atuendo {
   Prenda prendaSuperior;
   Prenda prendaInferior;

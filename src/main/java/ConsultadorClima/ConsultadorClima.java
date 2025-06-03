@@ -2,5 +2,5 @@ package ConsultadorClima;
 
 public interface ConsultadorClima {
 
-  public Integer getTemperaturaActual();
+  public double getTemperaturaActual();
 }

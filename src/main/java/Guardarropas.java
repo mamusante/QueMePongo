@@ -20,6 +20,7 @@ public class Guardarropas {
   public Atuendo generarSugerencia() {
 
     ArrayList<Prenda> prendasAcordes = motor.getPrendasAptas(this);
+    prendasAcordes = filtrarPrendasPorTemperatura(prendasAcordes);
 
     return new Atuendo(
         Randoms.atRandom(filtrarPrendasPorCategoria(prendasAcordes, Categoria.PARTE_SUPERIOR)),
@@ -44,9 +45,10 @@ public class Guardarropas {
     return sugerencias;
   }
 
-//  private ArrayList<Prenda> filtrarPrendasPorTemperatura(Integer temperatura) {
-//
-//  }
+  private ArrayList<Prenda> filtrarPrendasPorTemperatura(ArrayList<Prenda> prendas) {
+    double temperaturaActual = consultador.getTemperaturaActual();
+    return prendas;
+  }
 
   public ArrayList<Prenda> getPrendasSuperiores() {
     return filtrarPrendasPorCategoria(prendas, Categoria.PARTE_SUPERIOR);

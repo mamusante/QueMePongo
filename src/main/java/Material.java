@@ -1,3 +1,5 @@
+import Exceptions.MaterialInconsistenteConTipoException;
+
 public enum Material {
 
   CUERO{
