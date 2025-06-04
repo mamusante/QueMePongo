@@ -1,6 +1,6 @@
 package ConsultadorClima;
 
-public class MockConsultadorClima implements ConsultadorClima {
+public class MockConsultadorClimaFrio implements ConsultadorClima {
 
   @Override
   public double getTemperaturaActual() {

@@ -44,7 +44,9 @@ public class Guardarropas {
   public ArrayList<Atuendo> generarTodasLasSugerencias() {
     ArrayList<Atuendo> sugerencias = new ArrayList<>();
     ArrayList<Prenda> prendasAcordes = motor.getPrendasAptas(this);
+    prendasAcordes = filtrarPrendasPorTemperatura(prendasAcordes);
 
+    validarPrendasSuficientesParaGenerarAtuendo(prendasAcordes);
 
     for (Prenda prendaSuperior : filtrarPrendasPorCategoria(prendasAcordes, Categoria.PARTE_SUPERIOR)) {
       for (Prenda prendaInferior : filtrarPrendasPorCategoria(prendasAcordes, Categoria.PARTE_INFERIOR)) {

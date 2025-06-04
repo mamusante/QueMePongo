@@ -27,6 +27,12 @@ public enum Material {
     protected void consistenteCon(TipoPrenda tipo) {
 
     }
+  },
+  PLASTICO{
+    @Override
+    protected void consistenteCon(TipoPrenda tipo) {
+
+    }
   };
 
   protected abstract void consistenteCon(TipoPrenda tipo);
