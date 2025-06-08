@@ -73,7 +73,7 @@ public class TestGuardarropas {
   @DisplayName("La cantidad de prendas de cada tipo es la correcta")
   public void CantidadDePrendasPorCategoria() {
 
-    Guardarropas guardarropasdeMaria = new Guardarropas(prendas, new MotorDefault(), 22, new MockConsultadorClimaFrio());
+    Guardarropas guardarropasdeMaria = new Guardarropas(prendas, new MotorDefault(), 22, new AsesorDeImagen(new MockConsultadorClimaFrio()));
     assertEquals(2 , guardarropasdeMaria.getPrendasSuperiores().size());
     assertEquals(2 , guardarropasdeMaria.getPrendasInferiores().size());
     assertEquals(2 , guardarropasdeMaria.getCalzado().size());
@@ -84,7 +84,7 @@ public class TestGuardarropas {
   @DisplayName("Genero un atuendo y me devuelve uno completo")
   public void meDevuelveUnAtuendoCompleto(){
 
-    Guardarropas guardarropasdeMaria = new Guardarropas(prendas, new MotorDefault(), 22, new MockConsultadorClimaFrio());
+    Guardarropas guardarropasdeMaria = new Guardarropas(prendas, new MotorDefault(), 22, new AsesorDeImagen(new MockConsultadorClimaFrio()));
 
     assertDoesNotThrow(() -> {
       Atuendo miNuevoAtuendo = guardarropasdeMaria.generarSugerencia();
@@ -96,7 +96,7 @@ public class TestGuardarropas {
   @DisplayName("Genero todos los atuendos y me devuelve todas las combinaciones posibles")
   public void todasLascombinacionesPosibles(){
 
-    Guardarropas guardarropasdeMaria = new Guardarropas(prendas, new MotorDefault(), 22, new MockConsultadorClimaFrio());
+    Guardarropas guardarropasdeMaria = new Guardarropas(prendas, new MotorDefault(), 22, new AsesorDeImagen(new MockConsultadorClimaFrio()));
 
     ArrayList<Atuendo> combinaciones = guardarropasdeMaria.generarTodasLasSugerencias();
 
@@ -109,7 +109,7 @@ public class TestGuardarropas {
   @Test
   @DisplayName("Genero todos los atuendos y me devuelve todas las combinaciones posibles para un +55 con motorAntiViejos")
   public void todasLascombinacionesPosiblesParaUnSenior(){
-    Guardarropas guardarropasdeunSenior = new Guardarropas(prendas, new MotorAntiViejos(), 60, new MockConsultadorClimaFrio());
+    Guardarropas guardarropasdeunSenior = new Guardarropas(prendas, new MotorAntiViejos(), 60, new AsesorDeImagen(new MockConsultadorClimaFrio()));
     ArrayList<Atuendo> combinaciones = guardarropasdeunSenior.generarTodasLasSugerencias();
 
     assertEquals(1, combinaciones.size());
@@ -118,7 +118,7 @@ public class TestGuardarropas {
   @Test
   @DisplayName("Todas las combinaciones posibles para un dia caluroso con el motor default")
   public void todasLascombinacionesPosiblesParaUnDiaCaluroso(){
-    Guardarropas guardarropas = new Guardarropas(prendas, new MotorDefault(), 34, new MockConsultadorClimaCaluroso());
+    Guardarropas guardarropas = new Guardarropas(prendas, new MotorDefault(), 34, new AsesorDeImagen(new MockConsultadorClimaCaluroso()));
     ArrayList<Atuendo> combinaciones = guardarropas.generarTodasLasSugerencias();
     assertEquals(2, combinaciones.size());
 
@@ -127,7 +127,7 @@ public class TestGuardarropas {
   @Test
   @DisplayName("No hay combinacion para un jovie para un dia caluroso")
   public void noHayCombinacionPosibleParaUnSeniorEnUnDiaCaluroso(){
-    Guardarropas guardarropas = new Guardarropas(prendas, new MotorAntiViejos(), 65, new MockConsultadorClimaCaluroso());
+    Guardarropas guardarropas = new Guardarropas(prendas, new MotorAntiViejos(), 65, new AsesorDeImagen(new MockConsultadorClimaCaluroso()));
 
     assertThrows(NoHayPrendasSuficientesParaAtuendoException.class, () ->  guardarropas.generarTodasLasSugerencias());
 

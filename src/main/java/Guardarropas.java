@@ -9,19 +9,19 @@ public class Guardarropas {
   ArrayList<Prenda> prendas;
   MotorDeSugerencias motor;
   Integer edad;
-  ConsultadorClima consultador;
+  AsesorDeImagen asesor;
 
-  public Guardarropas(ArrayList<Prenda> prendas, MotorDeSugerencias motor, Integer edad, ConsultadorClima consultadorClima) {
+  public Guardarropas(ArrayList<Prenda> prendas, MotorDeSugerencias motor, Integer edad, AsesorDeImagen asesor) {
     this.prendas = prendas;
     this.motor = motor;
     this.edad = edad;
-    this.consultador = consultadorClima;
+    this.asesor = asesor;
   }
 
   public Atuendo generarSugerencia() {
 
     ArrayList<Prenda> prendasAcordes = motor.getPrendasAptas(this);
-    prendasAcordes = filtrarPrendasPorTemperatura(prendasAcordes);
+    prendasAcordes = asesor.seleccionarPrendasAptas(prendasAcordes);
 
     validarPrendasSuficientesParaGenerarAtuendo(prendasAcordes);
 
@@ -44,7 +44,7 @@ public class Guardarropas {
   public ArrayList<Atuendo> generarTodasLasSugerencias() {
     ArrayList<Atuendo> sugerencias = new ArrayList<>();
     ArrayList<Prenda> prendasAcordes = motor.getPrendasAptas(this);
-    prendasAcordes = filtrarPrendasPorTemperatura(prendasAcordes);
+    prendasAcordes = asesor.seleccionarPrendasAptas(prendasAcordes);
 
     validarPrendasSuficientesParaGenerarAtuendo(prendasAcordes);
 
@@ -59,11 +59,6 @@ public class Guardarropas {
     return sugerencias;
   }
 
-  private ArrayList<Prenda> filtrarPrendasPorTemperatura(ArrayList<Prenda> prendas) {
-    return prendas.stream()
-        .filter(p -> p.getMaxTemp() >= consultador.getTemperaturaActual())
-        .collect(Collectors.toCollection(ArrayList::new));
-  }
 
   public ArrayList<Prenda> getPrendasSuperiores() {
     return filtrarPrendasPorCategoria(prendas, Categoria.PARTE_SUPERIOR);
